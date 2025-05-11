@@ -1,4 +1,10 @@
+
+# environment
 .env
 
+# generated files and dependencies
 build/
 node_modules/
+*.wasm
+ 
+
