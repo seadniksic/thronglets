@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-# Set project name and C++ standard
+   # Set project name and C++ standard
 project(Thronglets)
 
 # Set the target output directory
@@ -17,12 +17,21 @@ set(CMAKE_CXX_STANDARD 17)
 # Add your C++ source files here
 add_executable(sim simulation/src/main.cpp)
 
+# Tell Emscripten to output ES6 module (`.mjs`)
+set_target_properties(sim PROPERTIES
+    OUTPUT_NAME "sim"
+    SUFFIX ".mjs"
+)
+
+# Emscripten-specific flags
+set(CMAKE_EXECUTABLE_SUFFIX ".mjs")
+
 set_target_properties(sim PROPERTIES
   LINK_FLAGS "-sEXPORTED_FUNCTIONS=['_main','_malloc','_free'] \
               -sEXPORTED_RUNTIME_METHODS=['ccall','cwrap'] \
               -sALLOW_MEMORY_GROWTH=1 \
               -sMODULARIZE=1 \
-              -sEXPORT_NAME=SimModule \
+              -sEXPORT_NAME=createModule \
               -sENVIRONMENT=web"
 )
 
@@ -32,19 +41,10 @@ set_target_properties(sim PROPERTIES
 add_custom_command(TARGET sim POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_SOURCE_DIR}/client/public
   COMMAND ${CMAKE_COMMAND} -E copy_if_different
-    ${CMAKE_BINARY_DIR}/sim.js
-    ${CMAKE_SOURCE_DIR}/client/public/sim.js
+    ${CMAKE_BINARY_DIR}/sim.mjs
+    ${CMAKE_SOURCE_DIR}/client/public/sim.mjs
   COMMAND ${CMAKE_COMMAND} -E copy_if_different
     ${CMAKE_BINARY_DIR}/sim.wasm
     ${CMAKE_SOURCE_DIR}/client/public/sim.wasm
 )
 
-
-#add_custom_command(TARGET sim POST_BUILD
-  #COMMAND ${CMAKE_COMMAND} -E copy_if_different
-    #${CMAKE_CURRENT_BINARY_DIR}/sim.wasm
-    #${CMAKE_SOURCE_DIR}/client/public/sim.wasm
-  #COMMAND ${CMAKE_COMMAND} -E copy_if_different
-    #${CMAKE_CURRENT_BINARY_DIR}/sim.js
-    #${CMAKE_SOURCE_DIR}/client/public/sim.js
-#)

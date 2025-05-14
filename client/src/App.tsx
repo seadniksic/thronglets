@@ -4,8 +4,10 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { extend } from '@react-three/fiber'
-import { OrbitControls } from 'three-stdlib'
-extend({ OrbitControls })
+//import { OrbitControls } from 'three-stdlib'
+//extend({ OrbitControls })
+import { FirstPersonControls } from '@react-three/drei'
+import SimulationControl from './simulation/sim_control.tsx' 
 
 //import SimWorld from './sim_world.tsx'
 
@@ -15,16 +17,10 @@ import { useSim } from './hooks/useSim';
 export default function App() {
 return (
     <div className="main_viewport">
+        <SimulationControl />
 
-         <OrbitControls />
-        <Canvas>
-          <mesh>
-            <sphereGeometry args={[2, 32, 16]} />
-            <meshPhongMaterial />
-          </mesh>
-          <ambientLight intensity={0.1} />
-          <directionalLight position={[0, 0, 5]} color="red" />
-        </Canvas>
+
+
     </div>
     
 )

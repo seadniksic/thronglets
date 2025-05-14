@@ -8,5 +8,8 @@
 build/
 node_modules/
 *.wasm
+client/public/sim.mjs
+client/public/sim.js
+
  
 
