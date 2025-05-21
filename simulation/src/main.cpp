@@ -2,44 +2,43 @@
 #include <cstdint>
 #include <vector>
 #include <iostream>
+#include "sim.h"
+
+static std::unique_ptr<Sim> simulation = std::make_unique<Sim>();
 
 extern "C" {
 
-static bool isRunning = false;
-static int tickCount = 0;
+/** High Level Simulation Controls */
 
 EMSCRIPTEN_KEEPALIVE
 void start_simulation() {
-    isRunning = true;
+    simulation->start();
 }
 
 EMSCRIPTEN_KEEPALIVE
 void stop_simulation() {
-    isRunning = false;
-    tickCount = 0;
+    simulation->stop();
 }
 
 EMSCRIPTEN_KEEPALIVE
-void pause_simulation() {
-    isRunning = false;
+void end_simulation() {
+    simulation->end();
 }
 
 EMSCRIPTEN_KEEPALIVE
 void restart_simulation() {
-    isRunning = true;
-    tickCount = 1;
-}
-
-EMSCRIPTEN_KEEPALIVE
-void tick() {
-    tickCount++;
+    simulation->restart();
 }
 
 EMSCRIPTEN_KEEPALIVE
 int get_tick_count() {
-    return tickCount;
+    return simulation->get_ticks();
 }
 
+//EMSCRIPTEN_KEEPALIVE
+//int get_tick_count() {
+    //simulation.get_voxel_buffer();
+//}
 
 }
 

@@ -1,26 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { loadWasm, startSimulation, tick, getTickCount, stopSimulation } from "./wasm_link";
+import { loadWasm, startSimulation, getTickCount, stopSimulation } from "./wasm_link";
 
 export default function SimulationControl() {
   const [tickCount, setTickCount] = useState(0);
 
-  useEffect(() => {
-    loadWasm().then(() => {
-      startSimulation();
-
-      const interval = setInterval(() => {
-        tick();
-        setTickCount(getTickCount());
-      }, 100);
-
-      return () => clearInterval(interval);
-    });
-  }, []);
+  useEffect(() => {loadWasm()})
 
   return (
    
       <div>   
-          <div>Tick Count: {tickCount}</div>
+          <div>Tick Count: {getTickCount()}</div>
+          <button onClick={startSimulation}> Start </button>
           <button onClick={stopSimulation}> Stop </button>
       </div>
   
