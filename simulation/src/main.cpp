@@ -4,7 +4,13 @@
 #include <iostream>
 #include "sim.h"
 
-static std::unique_ptr<Sim> simulation = std::make_unique<Sim>();
+
+// place these values in a config file at some point
+
+static uint32_t tick_hz = 30;
+
+
+static std::unique_ptr<Sim> simulation = std::make_unique<Sim>(tick_hz);
 
 extern "C" {
 

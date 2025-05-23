@@ -15,7 +15,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 set(CMAKE_CXX_STANDARD 17)
 
 # Add your C++ source files here
-add_executable(sim simulation/src/main.cpp) 
+add_executable(sim simulation/src/main.cpp simulation/src/sim.cpp) 
 
 # Tell Emscripten to output ES6 module (`.mjs`)
 set_target_properties(sim PROPERTIES
@@ -29,6 +29,8 @@ set(CMAKE_EXECUTABLE_SUFFIX ".mjs")
 set_target_properties(sim PROPERTIES
   LINK_FLAGS "-sEXPORTED_FUNCTIONS=['_main','_malloc','_free'] \
               -sEXPORTED_RUNTIME_METHODS=['ccall','cwrap'] \
+              -sUSE_PTHREADS=1 \
+              -sPTHREAD_POOL_SIZE=1 \
               -sALLOW_MEMORY_GROWTH=1 \
               -sMODULARIZE=1 \
               -sEXPORT_NAME=createModule \

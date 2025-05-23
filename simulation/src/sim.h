@@ -5,6 +5,7 @@
 class Sim {
 
     public:
+        Sim(uint32_t tick_rate);
         void start();
         void stop();
         void end();
@@ -15,5 +16,6 @@ class Sim {
         //World* world;
         bool running = false;
         uint32_t tick_count = 0;
+        uint32_t tick_rate_; 
 
 };

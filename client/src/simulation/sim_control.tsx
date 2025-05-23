@@ -9,7 +9,6 @@ export default function SimulationControl() {
   return (
    
       <div>   
-          <div>Tick Count: {getTickCount()}</div>
           <button onClick={startSimulation}> Start </button>
           <button onClick={stopSimulation}> Stop </button>
       </div>

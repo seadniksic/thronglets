@@ -3,12 +3,16 @@
 #include <thread>
 #include <iostream>
 
+
+
+Sim::Sim(uint32_t tick_rate) : tick_rate_(tick_rate) {}
+
+
 void Sim::start() {
+    std::cout << "starting simulation";
     running = true;
-    while (running) {
-        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-        tick_count++;
-    }
+    pthread_t thread;
+    pthread_create(&thread, nullptr, main_loop, nullptr);
 }
 
 void Sim::stop() {
@@ -22,6 +26,15 @@ void Sim::end() {
 void Sim::restart() {
     tick_count = 0;
 }
+
+void * Sim::main_loop(void* arg) {
+    while (running) {
+        emscripten_sleep(tick_hz);
+        tick_count++;
+    } 
+}
+
+
 
 uint32_t Sim::get_ticks() {
     return tick_count;
