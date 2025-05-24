@@ -1,5 +1,6 @@
-//#include "world.h"
+#include "world.h"
 #include <cstdint>
+#include <memory>
 
 namespace thronglets {
 
@@ -14,14 +15,13 @@ class Sim {
         uint32_t get_ticks();
         static void* thread_entry(void* args);
         void main_loop();
-
+        void get_voxel_buffer();
         
     private:
-        //World* world;
+        std::unique_ptr<World> world;
         bool running_ = false;
         uint32_t tick_count_ = 0;
         uint32_t tick_rate_; 
-
 };
 
 }

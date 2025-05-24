@@ -8,14 +8,29 @@ import { extend } from '@react-three/fiber'
 //extend({ OrbitControls })
 import { FirstPersonControls } from '@react-three/drei'
 import SimulationControl from './simulation/sim_control.tsx' 
-//import SimulationRender from './simulation/sim_render.tsx'
-
+import SimulationRender from './simulation/sim_render.tsx'
+import { loadWasm } from "./simulation/wasm_link";
 import { useSim } from './hooks/useSim';
 
 export default function App() {
+  const [wasmLoaded, setWasmLoaded] = useState(false);
+
+  // load in wasm
+  useEffect(() => {
+      async function load() {
+          await loadWasm();
+          setWasmLoaded(true);
+      }
+      load();
+  }, [])
+
+
 return (
     <div className="main_viewport">
-        <SimulationControl />
+        <SimulationControl wasmLoaded={wasmLoaded} />
+        <Canvas>
+            <SimulationRender wasmLoaded={wasmLoaded} />
+        </Canvas>
     </div>
     
 )

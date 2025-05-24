@@ -1,18 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { loadWasm, startSimulation, getTickCount, stopSimulation } from "./wasm_link";
 
-export default function SimulationControl() {
+export default function SimulationControl({wasmLoaded}) {
   const [tickCount, setTickCount] = useState(0);
-  const [wasmLoaded, setWasmLoaded] = useState(false);
-
-  // load in wasm
-  useEffect(() => {
-      async function load() {
-          await loadWasm();
-          setWasmLoaded(true);
-      }
-      load();
-  }, [])
 
   useEffect(() => {
     if (wasmLoaded) {

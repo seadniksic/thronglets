@@ -2,8 +2,21 @@
 let Module: any;
 
 export async function loadWasm() {
+    const initialMemoryPages = 256;  // Example: 256 * 64KiB = 16MB initial memory
+    const maxMemoryPages = 512;      // Max 32MB (optional)
+
+    // Create shared memory
+    const wasmMemory = new WebAssembly.Memory({
+        initial: initialMemoryPages,
+        maximum: maxMemoryPages,
+        shared: true,
+    });
+
+    // Dynamically import the Emscripten-generated module factory
     const createModule = (await import("../../public/sim.mjs")).default;
-    Module = await createModule();
+
+    // Pass wasmMemory as an option to the factory
+    Module = await createModule({wasmMemory});
 }
 
 export function startSimulation() {
@@ -24,6 +37,10 @@ export function restartSimulation() {
 
 export function getTickCount(): number {
   return Module._get_tick_count();
+}
+
+export function getVoxelBuffer(): number {
+  return Module._get_voxel_buffer();
 }
 
 //export function getVoxelBuffer(): number {

@@ -46,4 +46,8 @@ uint32_t Sim::get_ticks() {
     return tick_count_;
 }
 
+void Sim::get_voxel_buffer() {
+    return world_->get_voxel_buffer();
+}
+
 }

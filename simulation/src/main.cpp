@@ -8,8 +8,7 @@
 
 static uint32_t tick_rate = 30;
 
-
-static std::unique_ptr<Sim> simulation = std::make_unique<Sim>(tick_rate);
+static std::unique_ptr<thronglets::Sim> simulation = std::make_unique<thronglets::Sim>(tick_rate);
 
 
 extern "C" {
@@ -39,6 +38,11 @@ void restart_simulation() {
 EMSCRIPTEN_KEEPALIVE
 int get_tick_count() {
     return simulation->get_ticks();
+}
+
+EMSCRIPTEN_KEEPALIVE
+int get_voxel_buffer() {
+    return simulation->get_voxel_buffer();
 }
 
 //EMSCRIPTEN_KEEPALIVE
