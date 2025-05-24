@@ -8,5 +8,9 @@ export default defineConfig({
     watch: {
       usePolling: true, // For file change detection across OSes
     },
+    headers: {
+      'Cross-Origin-Opener-Policy': 'same-origin',
+      'Cross-Origin-Embedder-Policy': 'require-corp',
+    }
   },
 });

@@ -11,11 +11,14 @@ class Sim {
         void end();
         void restart();
         uint32_t get_ticks();
+        static void* thread_entry(void* args);
+        void main_loop();
+
         
     private:
         //World* world;
-        bool running = false;
-        uint32_t tick_count = 0;
+        bool running_ = false;
+        uint32_t tick_count_ = 0;
         uint32_t tick_rate_; 
 
 };

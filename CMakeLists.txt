@@ -23,6 +23,7 @@ set_target_properties(sim PROPERTIES
     SUFFIX ".mjs"
 )
 
+
 # Emscripten-specific flags
 set(CMAKE_EXECUTABLE_SUFFIX ".mjs")
 
@@ -34,7 +35,8 @@ set_target_properties(sim PROPERTIES
               -sALLOW_MEMORY_GROWTH=1 \
               -sMODULARIZE=1 \
               -sEXPORT_NAME=createModule \
-              -sENVIRONMENT=web"
+              -sENVIRONMENT=web,worker \
+              -s ASYNCIFY"
 )
 
 # Link any necessary libraries here, e.g., SDL, SFML, etc.

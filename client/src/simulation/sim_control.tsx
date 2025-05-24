@@ -3,12 +3,31 @@ import { loadWasm, startSimulation, getTickCount, stopSimulation } from "./wasm_
 
 export default function SimulationControl() {
   const [tickCount, setTickCount] = useState(0);
+  const [wasmLoaded, setWasmLoaded] = useState(false);
 
-  useEffect(() => {loadWasm()})
+  // load in wasm
+  useEffect(() => {
+      async function load() {
+          await loadWasm();
+          setWasmLoaded(true);
+      }
+      load();
+  }, [])
+
+  useEffect(() => {
+    if (wasmLoaded) {
+        let updateTicks = () => {
+            setTickCount(getTickCount());
+            requestAnimationFrame(updateTicks);
+        } 
+        requestAnimationFrame(updateTicks);
+   }
+  }, [wasmLoaded])
 
   return (
    
-      <div>   
+      <div> 
+          <div> Tick Count: {tickCount} </div>
           <button onClick={startSimulation}> Start </button>
           <button onClick={stopSimulation}> Stop </button>
       </div>

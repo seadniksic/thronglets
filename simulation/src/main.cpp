@@ -7,10 +7,10 @@
 
 // place these values in a config file at some point
 
-static uint32_t tick_hz = 30;
+static uint32_t tick_rate = 30;
 
 
-static std::unique_ptr<Sim> simulation = std::make_unique<Sim>(tick_hz);
+static std::unique_ptr<Sim> simulation = std::make_unique<Sim>(tick_rate);
 
 extern "C" {
 
@@ -49,6 +49,8 @@ int get_tick_count() {
 }
 
 int main() {
+
+    std::cout << "main thread started\n"<< std::flush;
     return 0;
 }
 
