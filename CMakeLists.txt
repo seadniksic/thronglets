@@ -50,3 +50,6 @@ add_custom_command(TARGET sim POST_BUILD
     ${CMAKE_SOURCE_DIR}/client/public/sim.wasm
 )
 
+
+
+
