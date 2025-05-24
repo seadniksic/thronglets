@@ -4,13 +4,13 @@
 #include <iostream>
 #include "sim.h"
 
-
 // place these values in a config file at some point
 
 static uint32_t tick_rate = 30;
 
 
 static std::unique_ptr<Sim> simulation = std::make_unique<Sim>(tick_rate);
+
 
 extern "C" {
 

@@ -1,6 +1,7 @@
 //#include "world.h"
 #include <cstdint>
 
+namespace thronglets {
 
 class Sim {
 
@@ -22,3 +23,5 @@ class Sim {
         uint32_t tick_rate_; 
 
 };
+
+}

@@ -4,6 +4,8 @@
 #include <iostream>
 #include <emscripten.h>
 
+namespace thronglets {
+
 
 Sim::Sim(uint32_t tick_rate) : tick_rate_(tick_rate) {}
 
@@ -42,4 +44,6 @@ void Sim::main_loop() {
 
 uint32_t Sim::get_ticks() {
     return tick_count_;
+}
+
 }

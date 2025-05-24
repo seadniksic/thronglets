@@ -1,5 +1,7 @@
 #include <string.h>
 
+namespace thronglets {
+
 
 constexpr CHUNK_SIZE_X = 16;
 constexpr CHUNK_SIZE_Y = 256;
@@ -21,5 +23,4 @@ struct Chunk {
 
 
 
-
-
+}
