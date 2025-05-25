@@ -1,5 +1,6 @@
 #include <emscripten.h>
 #include <cstdint>
+#include <memory>
 #include <vector>
 #include <iostream>
 #include "sim.h"
@@ -8,12 +9,12 @@
 
 static uint32_t tick_rate = 30;
 
-static std::unique_ptr<thronglets::Sim> simulation = std::make_unique<thronglets::Sim>(tick_rate);
-
 
 extern "C" {
 
 /** High Level Simulation Controls */
+
+std::unique_ptr<thronglets::Sim> simulation = std::make_unique<thronglets::Sim>(tick_rate);
 
 EMSCRIPTEN_KEEPALIVE
 void start_simulation() {
@@ -41,8 +42,13 @@ int get_tick_count() {
 }
 
 EMSCRIPTEN_KEEPALIVE
-int get_voxel_buffer() {
+uint32_t get_voxel_buffer() {
     return simulation->get_voxel_buffer();
+}
+
+EMSCRIPTEN_KEEPALIVE
+void update_view_port(int64_t x, int64_t y, int64_t z) {
+    simulation->update_view_port(x, y, z);
 }
 
 //EMSCRIPTEN_KEEPALIVE

@@ -24,7 +24,6 @@ export default function App() {
       load();
   }, [])
 
-
 return (
     <div className="main_viewport">
         <SimulationControl wasmLoaded={wasmLoaded} />

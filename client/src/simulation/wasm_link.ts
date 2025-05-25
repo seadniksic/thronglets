@@ -1,9 +1,9 @@
 // wasm.ts
-let Module: any;
+export let Module: any;
 
 export async function loadWasm() {
-    const initialMemoryPages = 256;  // Example: 256 * 64KiB = 16MB initial memory
-    const maxMemoryPages = 512;      // Max 32MB (optional)
+    const initialMemoryPages = 512;  // Example: 256 * 64KiB = 16MB initial memory
+    const maxMemoryPages = 1024;      // Max 32MB (optional)
 
     // Create shared memory
     const wasmMemory = new WebAssembly.Memory({
@@ -41,6 +41,10 @@ export function getTickCount(): number {
 
 export function getVoxelBuffer(): number {
   return Module._get_voxel_buffer();
+}
+
+export function updateViewPort(x: number, y: number, z: number) {
+  return Module._update_view_port(x, y, z);
 }
 
 //export function getVoxelBuffer(): number {

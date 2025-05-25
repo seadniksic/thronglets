@@ -1,3 +1,5 @@
+#pragma once
+
 #include "world.h"
 #include <cstdint>
 #include <memory>
@@ -15,10 +17,11 @@ class Sim {
         uint32_t get_ticks();
         static void* thread_entry(void* args);
         void main_loop();
-        void get_voxel_buffer();
+        uint32_t get_voxel_buffer();
+        void update_view_port(int64_t x, int64_t y, int64_t z);
         
     private:
-        std::unique_ptr<World> world;
+        std::unique_ptr<World> world_;
         bool running_ = false;
         uint32_t tick_count_ = 0;
         uint32_t tick_rate_; 
