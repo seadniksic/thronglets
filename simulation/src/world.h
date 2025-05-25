@@ -27,13 +27,11 @@ struct Chunk {
 class World {
 
     public:
-        World() = default;
+        World();
         uint32_t get_voxel_buffer();
-        void create_world();
 
     private:
         std::shared_ptr<Chunk> mainChunk;
-        //Chunk* mainChunk;
 };
 
 }

@@ -2,8 +2,8 @@
 export let Module: any;
 
 export async function loadWasm() {
-    const initialMemoryPages = 512;  // Example: 256 * 64KiB = 16MB initial memory
-    const maxMemoryPages = 1024;      // Max 32MB (optional)
+    const initialMemoryPages = 256;  // Example: 256 * 64KiB = 16MB initial memory
+    const maxMemoryPages = 512;      // Max 32MB (optional)
 
     // Create shared memory
     const wasmMemory = new WebAssembly.Memory({

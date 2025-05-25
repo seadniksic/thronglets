@@ -37,8 +37,8 @@ set_target_properties(sim PROPERTIES
               -sENVIRONMENT=web,worker \
               -sIMPORTED_MEMORY=1 \
               -sSHARED_MEMORY=1 \
-              -sINITIAL_MEMORY=33554432 \
-              -sMAXIMUM_MEMORY=67108864 \
+              -sINITIAL_MEMORY=16777216 \
+              -sMAXIMUM_MEMORY=33554432 \
               -sMALLOC=mimalloc \
               -sASYNCIFY"
 )

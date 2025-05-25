@@ -13,7 +13,6 @@ Sim::Sim(uint32_t tick_rate) : tick_rate_(tick_rate), world_(std::make_unique<Wo
 
 
 void Sim::main_loop() {
-    world_->create_world();
     while (running_) {
         emscripten_sleep(tick_rate_);
         tick_count_++;

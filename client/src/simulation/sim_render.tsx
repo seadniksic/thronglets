@@ -6,14 +6,9 @@ export default function SimulationRender({wasmLoaded}) {
 
   useEffect(() => {
     if (wasmLoaded) {
-        startSimulation();
+        //startSimulation();
         const voxelPtr: number = getVoxelBuffer(); 
         const voxelBufferSize: number = 16*16*256 
-
-        console.info(voxelPtr)
-        console.info(Module.wasmMemory.buffer)
-        //console.info(
-        console.info((voxelPtr + voxelBufferSize) > Module.wasmMemory.buffer.length)
  
         // Create a typed array view on the wasm shared memory buffer:
         const voxelData = new Uint8Array(
