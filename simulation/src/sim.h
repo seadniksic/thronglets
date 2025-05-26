@@ -3,6 +3,7 @@
 #include "world.h"
 #include <cstdint>
 #include <memory>
+#include <glm/glm.hpp>
 
 namespace thronglets {
 
@@ -25,6 +26,7 @@ class Sim {
         bool running_ = false;
         uint32_t tick_count_ = 0;
         uint32_t tick_rate_; 
+        glm::vec3 view_port_ = glm::vec3(0,0,0);
 };
 
 }

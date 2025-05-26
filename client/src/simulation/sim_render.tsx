@@ -5,6 +5,7 @@ import { OrbitControls, Environment } from '@react-three/drei';
 import * as THREE from 'three';
 
 const CHUNK_SIZE = 16*16*1;
+const NUMBER_CHUNKS = ;
 
 export default function SimulationRender({wasmLoaded}) {
    const { camera } = useThree();
@@ -13,6 +14,7 @@ export default function SimulationRender({wasmLoaded}) {
    useEffect(() => {
      if (wasmLoaded) {
         const voxelPtr: number = getVoxelBuffer(); 
+        const numberChunks: number =  
         const voxelBufferSize: number = CHUNK_SIZE // read this from config
  
         // Create a typed array view on the wasm shared memory buffer:

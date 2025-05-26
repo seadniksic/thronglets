@@ -56,9 +56,8 @@ uint32_t Sim::get_voxel_buffer() {
 }
 
 void Sim::update_view_port(double x, double y, double z) {
-
-    return;
-
+    view_port_ = glm::vec3(x, y, z);
+    world_->update_chunks_(view_port_)
 }
 
 }
