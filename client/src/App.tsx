@@ -26,8 +26,8 @@ export default function App() {
 
 return (
     <div className="main_viewport">
-        <SimulationControl wasmLoaded={wasmLoaded} />
-        <Canvas>
+     <SimulationControl wasmLoaded={wasmLoaded} /> 
+        <Canvas shadows>
             <SimulationRender wasmLoaded={wasmLoaded} />
         </Canvas>
     </div>

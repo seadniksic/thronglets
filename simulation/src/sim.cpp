@@ -55,7 +55,7 @@ uint32_t Sim::get_voxel_buffer() {
     return world_->get_voxel_buffer();
 }
 
-void Sim::update_view_port(int64_t x, int64_t y, int64_t z) {
+void Sim::update_view_port(double x, double y, double z) {
 
     return;
 

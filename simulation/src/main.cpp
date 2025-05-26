@@ -47,7 +47,7 @@ uint32_t get_voxel_buffer() {
 }
 
 EMSCRIPTEN_KEEPALIVE
-void update_view_port(int64_t x, int64_t y, int64_t z) {
+void update_view_port(double x, double y, double z) {
     simulation->update_view_port(x, y, z);
 }
 

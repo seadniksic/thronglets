@@ -11,5 +11,9 @@ node_modules/
 client/public/sim.mjs
 client/public/sim.js
 
+# assets (temp)
+*.png
+*.jpg
+
  
 

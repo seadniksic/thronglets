@@ -7,7 +7,7 @@
 namespace thronglets {
 
 constexpr uint16_t CHUNK_SIZE_X = 16;
-constexpr uint16_t CHUNK_SIZE_Y = 256;
+constexpr uint16_t CHUNK_SIZE_Y = 1;
 constexpr uint16_t CHUNK_SIZE_Z = 16;
 
 struct Voxel {

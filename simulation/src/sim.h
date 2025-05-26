@@ -18,7 +18,7 @@ class Sim {
         static void* thread_entry(void* args);
         void main_loop();
         uint32_t get_voxel_buffer();
-        void update_view_port(int64_t x, int64_t y, int64_t z);
+        void update_view_port(double x, double y, double z);
         
     private:
         std::unique_ptr<World> world_;

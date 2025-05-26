@@ -16,7 +16,7 @@ export default function SimulationControl({wasmLoaded}) {
 
   return (
    
-      <div> 
+      <div className="sim_control"> 
           <div> Tick Count: {tickCount} </div>
           <button onClick={startSimulation}> Start </button>
           <button onClick={stopSimulation}> Stop </button>
